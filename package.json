@@ -1,0 +1,69 @@
+{
+  
+  "name": "myBuild",
+  
+  "version": "1.0.0",
+  
+  "description": "This example is so cool.",
+  
+  "main": "web.js",
+  
+  "scripts": {
+  
+    
+  "test": "echo \"Error: no test specified\" && exit 1",
+  
+    
+  "start": "node index.js"
+  
+  },
+  
+  "keywords": [
+  
+    
+  "example",
+  
+    
+  "heroku"
+  
+  ],
+  
+  "author": "guillaume_gaillard",
+  
+  "license": "MIT",
+  
+  "dependencies": {
+  
+    
+  "cors": "^2.8.5",
+  
+    
+  "express": "^4.17.2",
+  
+    
+  "jsonwebtoken": "^8.5.1",
+  
+    
+  "mongodb": "^4.4.0",
+  
+    
+  "socket.io": "^4.4.1"
+  
+  },
+  
+  "devDependencies": {
+  
+    
+  "nodemon": "^2.0.15"
+  
+  },
+  
+  "proxy": "http://localhost:3001",
+  
+  "engines": {
+  
+    
+  "node": "17.3.0"
+  
+  }
+}

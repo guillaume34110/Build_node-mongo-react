@@ -1,0 +1,36 @@
+.signup-section{ 
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.signup-card{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius:8px;
+    border: 1px solid black;
+    width :50vw;
+    padding : 5vh 20px;
+}
+.signup-title{ 
+    display: flex;
+    align-items: center;
+}
+
+.signup-inputs{
+        display: flex;
+        flex-direction: column;
+        width :stretch;
+}
+.signup-input{
+    margin : 10px 0 ;
+    text-align:left;
+    display: flex;
+    flex-direction: column;
+}
+.signup-main-button{
+    margin-top: 20px;
+    height : 40px;
+    width : 150px;
+}

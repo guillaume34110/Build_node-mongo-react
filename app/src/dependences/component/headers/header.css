@@ -1,0 +1,12 @@
+.header-signup ,.header-login{
+    display: flex;
+    justify-content: flex-end;
+   
+    width: 100%;
+}
+.header-home-button ,.header-signup-button, .header-login-button {
+
+    height: 40px;
+    width: 150px;
+    margin: 1rem 0.5rem;
+}

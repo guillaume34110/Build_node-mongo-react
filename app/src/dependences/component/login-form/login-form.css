@@ -1,0 +1,38 @@
+.login-section{ 
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-title{ 
+    display: flex;
+    align-items: center;
+} 
+.login-card{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius:8px;
+    border: 1px solid black;
+    width :50vw;
+    padding : 5vh 20px;
+}
+
+.login-inputs{
+    display: flex;
+    flex-direction: column;
+    width :stretch;
+   
+}
+.login-input{
+    margin : 10px 0 ;
+    text-align:left;
+    display: flex;
+    flex-direction: column; 
+  
+}
+.login-main-button{
+    margin-top: 2.5rem;
+    height : 40px;
+    width : 150px;
+}

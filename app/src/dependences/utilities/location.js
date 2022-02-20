@@ -1,0 +1,1 @@
+export let location = "http://localhost:3001" //"https://multipassinbox.herokuapp.com" // "http://localhost:8080"
