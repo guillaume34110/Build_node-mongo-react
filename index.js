@@ -23,7 +23,6 @@ const accessTokenSecret = 'yourencodingstring';
 /*Mongo */
 const MongoClient = require('mongodb').MongoClient
 const mongoUrl = 'your mongo url'
-
 /*database collections */
 let db
 let usersCollection 
@@ -39,6 +38,7 @@ app.use(express.static(path));
 app.get('/', function (req,res) {
   res.sendFile(path + "/index.html");
 })
+
 /*database connexion*/
 /*
 MongoClient.connect( mongoUrl, {
@@ -53,6 +53,7 @@ MongoClient.connect( mongoUrl, {
 
     .catch(error => console.error(error))
     */
+
 /*signup requests */
 app.post('/signup',cors(), async (req, res) => {
     console.log(req.body)
@@ -75,6 +76,7 @@ app.post('/signup',cors(), async (req, res) => {
       res.status(400).json('error')
   }
 })
+
 /*login request */ 
 app.post('/login', async (req, res) => {
     if (helper.checkStructure(dataStructure.loginStructure, req.body) && db) {
@@ -84,7 +86,6 @@ app.post('/login', async (req, res) => {
             password
         } = req.body;
         password = sha256(password)
-
 
         let userName = {
             username: username
@@ -108,14 +109,14 @@ console.log(accessToken ,"access")
     } else res.status(400).json('structure error')
 
 });
-/*privateRoute*/
 
+/*privateRoute*/
 app.get('/tokenCheck', helper.authenticateJWT, (req, res) => {
     res.status(200).json(true)
 })
+
 /*socket io */
 const socket = () => {
-
 
     io.use(function (socket, next) {
 
