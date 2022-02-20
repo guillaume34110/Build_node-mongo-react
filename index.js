@@ -58,20 +58,16 @@ MongoClient.connect( mongoUrl, {
 app.post('/signup',cors(), async (req, res) => {
     console.log(req.body)
   if (helper.checkStructure(dataStructure.signupStructure, req.body) && db) {
-      const usersList = await db.collection('users').find().toArray()
-      try {
-          const userAlreadyExist = usersList.find(user => user.username === req.body.username)
-          if (!userAlreadyExist) {
+          let usersList
+           try {usersList = await db.collection('users').find({'username':req.body.username}).toArray()}  
+           catch {usersList = false}
+          if (!usersList ) {
               usersCollection.insertOne(req.body)
               res.status(200).json(usersList)
               console.log('new user' , req.body)
           } else {
               res.status(200).json('user already exist')
           }
-      } catch {
-          res.status(500).json('error')
-      }
-
   } else {
       res.status(400).json('error')
   }

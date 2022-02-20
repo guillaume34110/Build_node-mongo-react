@@ -45,7 +45,7 @@ export default function SignupForm() {
         response = await response.json();
 
         if (response !== "user already exist") navigate('/login')
-        else nameLabelSpan.current.innerText = newData;
+        else nameLabelSpan.current.innerText = response;
       } catch {
         console.error("Error:", false);
       }
