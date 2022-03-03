@@ -19,7 +19,7 @@ const io = new Server(httpServer, {
     cors: {origin: "*"}
 });
 /*accesstoken*/
-const accessTokenSecret = 'mon_token';
+const accessTokenSecret = 'yourencodingstring';
 /*Mongo */
 const MongoClient = require('mongodb').MongoClient
 const mongoUrl = 'mongodb+srv://jean34:jeandatabase34@cluster0.tymsp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
