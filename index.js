@@ -19,10 +19,10 @@ const io = new Server(httpServer, {
     cors: {origin: "*"}
 });
 /*accesstoken*/
-const accessTokenSecret = 'yourencodingstring';
+const accessTokenSecret = 'mon_token';
 /*Mongo */
 const MongoClient = require('mongodb').MongoClient
-const mongoUrl = 'your mongo url'
+const mongoUrl = 'mongodb+srv://jean34:jeandatabase34@cluster0.tymsp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 /*database collections */
 let db
 let usersCollection 
@@ -45,14 +45,13 @@ MongoClient.connect( mongoUrl, {
         useUnifiedTopology: true
     })
     .then(client => {
-        db = client.db('pinguinyFighters')
-        usersCollection = db.collection('users')
-       
+        db = client.db('dataBaseName')//your database name
+        usersCollection = db.collection('users')// usercollection name 'create exact users collection on tour mongo database 
+       console.log("database connected ;D !")
         socket()
     })
 
     .catch(error => console.error(error))
-    */
 
 /*signup requests */
 app.post('/signup',cors(), async (req, res) => {
@@ -61,7 +60,7 @@ app.post('/signup',cors(), async (req, res) => {
           let usersList
            try {usersList = await db.collection('users').find({'username':req.body.username}).toArray()}  
            catch {usersList = false}
-          if (!usersList ) {
+          if (usersList ) {
               usersCollection.insertOne(req.body)
               res.status(200).json(usersList)
               console.log('new user' , req.body)
@@ -94,7 +93,7 @@ app.post('/login', async (req, res) => {
                 const accessToken = jwt.sign({
                     username: username
                 }, accessTokenSecret);
-console.log(accessToken ,"access")
+                console.log(accessToken ,"access")
                 res.status(200).json({
                     accessToken
                 });
