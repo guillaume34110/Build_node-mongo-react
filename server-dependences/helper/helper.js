@@ -1,67 +1,54 @@
-const fs = require('fs')
-
-
-
-function checkStructure(requiredData, newData) {
-    const referenceKeys = Object.keys(requiredData)
-    const newDataKey = Object.keys(newData)
-    if (JSON.stringify(referenceKeys) === JSON.stringify(newDataKey)) {
-        let token = 0
-        referenceKeys.forEach(key => {
-            if (typeof requiredData[key] === typeof newData[key]) {
-                token++
-            }
-        })
-        if (token === referenceKeys.length) return true
-        else return false
-    } else return false
-}
-
-const jwt = require('jsonwebtoken');
-
-
-const authenticateJWT = (req, res, next) => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.removeStringFromArray = exports.logoutJWT = exports.authenticateJWT = void 0;
+const jwt = require("jsonwebtoken");
+const accessTokenSecret = "backendfirstapiwithusers";
+const authenticateJWT = (req, res) => {
     const authHeader = req.headers.authorization;
-   let accessTokenSecret = 'yourencodingstring'
-    if (authHeader) {
-        const token = authHeader.split(' ')[1];
-
-        jwt.verify(token, accessTokenSecret, (err, user) => {
-            if (err) {
-                return res.sendStatus(403);
-            }
-
-            req.user = user;
-            next();
-        });
-    } else {
+    if (authHeader !== undefined) {
+        const token = authHeader.split(" ")[1];
+        if (token !== undefined) {
+            jwt.verify(token, accessTokenSecret, (err, user) => {
+                if (err !== undefined) {
+                    return res.sendStatus(403);
+                }
+                //@ts-expect-error
+                if (typeof user === "string")
+                    req['user'] = user;
+                next(undefined);
+            });
+        }
+    }
+    else {
         res.sendStatus(401);
     }
 };
-const logoutJWT = (req, res, next) => {
+exports.authenticateJWT = authenticateJWT;
+const logoutJWT = (req, res) => {
     const authHeader = req.headers.authorization;
-   
-    if (authHeader) {
-        const token = authHeader.split(' ')[1];
-
-        jwt.sign(token,"", {expiresIn: 1 } , ( logout,err) => {
-            if (logout) {
-                return res.send({msg : 'You have been Logged Out' });
-            }else {
-                res.send({msg:'Error'});
-            }
-        });
-    } else {
+    if (authHeader !== undefined) {
+        const token = authHeader.split(" ")[1];
+        if (token !== undefined) {
+            jwt.sign(token, "", { expiresIn: 1 }, (logout, _err) => {
+                if (logout !== undefined) {
+                    return res.send({ msg: "You have been Logged Out" });
+                }
+                else {
+                    res.send({ msg: "Error" });
+                }
+            });
+        }
+        ;
+    }
+    else {
         res.sendStatus(401);
     }
 };
-const removeStringFromArray = (array,string) => {
-     array.filter(e => e !== string); // will return ['A', 'C']
-}
-
-module.exports = {
-    checkStructure,
-    authenticateJWT,
-    logoutJWT,
-    removeStringFromArray
+exports.logoutJWT = logoutJWT;
+const removeStringFromArray = (array, string) => {
+    return array.filter(e => e !== string); // will return ['A', 'C']
+};
+exports.removeStringFromArray = removeStringFromArray;
+function next(_undefined) {
+    throw new Error("Function not implemented.");
 }
